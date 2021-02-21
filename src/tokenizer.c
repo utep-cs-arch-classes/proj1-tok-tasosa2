@@ -1,19 +1,29 @@
 #include <stdio.h>
+#include "tokenizer.h"
 
-void main(){
-  
-  //Print out indicator
-  printf("> ");
-  
-  char c;
 
-  //Reads one char at a time from user input and prints them.
-  //This goes on until you press enter and create a new line.
-  while ((c = getchar()) != '\n'){
-    putchar(c);
-  }
-
-  printf("\n");
+int space_char(char c){
   
 }
+
+int non_space_char(char c){
+
+}
+
+int word_start(char *str){
+
+}
+
+char *word_terminator(char *word){
+  
+}
+
+char *word_terminator(char *word){
+  
+}
+
+int count_words(char *str){
+
+}
+
 
