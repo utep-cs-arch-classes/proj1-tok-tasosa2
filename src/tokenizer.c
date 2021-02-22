@@ -12,17 +12,31 @@ int main(){
   printf("%d\n", non_space_char('a'));// 1
   printf("%d\n", non_space_char(' ')); // 0
 
-  //  *word_start tests
-  char word[] = "  HELLO";
- 
-  char *ptr = word_start(word);
+  // *word_start and word_end tests
+  char word1[] = " HELLO"; // for word start
+  char word2[] = "HELLO "; // for word end
+  
+  char *ptr = word_start(word1);
   printf("1: %p\n", ptr);
-  printf("2: %p\n", &word[2]);
-  /*
-  char *ptr = word_end(word);
-  printf("1: %p\n", ptr);
-  printf("2: %p\n", &word[5]);
-  */
+  printf("2: %p\n", &word1[1]);
+  
+  char *word = word_end(word2);
+  printf("1: %p\n", word);
+  printf("2: %p\n", &word2[5]);
+
+  // *count_words tests
+  char word3[] = "HOLA";
+  char word4[] = " HOLA";
+  char word5[] = "HOLA ";
+  char word6[] = "HOLA AMIGO";
+  char word7[] = " HOLA AMIGO SOY THOMAS ";
+
+  printf("count_words Test 1: %i\n", count_words(word3));
+  printf("count_words Test 2: %i\n", count_words(word4));
+  printf("count_words Test 3: %i\n", count_words(word5));
+  printf("count_words Test 4: %i\n", count_words(word6));
+  printf("count_words Test 5: %i\n", count_words(word7));
+	 
   return 0;
 }
 
@@ -57,7 +71,7 @@ char *word_start(char *str){
   // returned.
   for(; *str != '\0'; str++){
     if(non_space_char(*str) == 1){
-      printf("First non_space_char: %p\n", str);
+      printf("First non_space_char: %c\n", *str);
       return str;
     }
   }
@@ -67,14 +81,16 @@ char *word_start(char *str){
   return '\0';
 }
 
-/*
+
 char *word_end(char *word){
   
-  // 
-  for(; *str != '\0'; str++){
-    if(space_char(*str) == 1){
-      printf("First space_char: %p\n", str);
-      return str;
+  // Iterates through each character of the string until we reach a zero-terminator or
+  // the first space character is found. If a space character is found, its adress is
+  // returned. 
+  for(; *word != '\0'; word++){
+    if(space_char(*word) == 1){
+      printf("First space_char: %c\n", *word);
+      return word;
     }
   }
     
@@ -84,7 +100,29 @@ char *word_end(char *word){
 
 
 int count_words(char *str){
+  int word_count = 0;
+  int word_switch = 0;
+  // Traverses the string one char at a time
+  for( ; *str != '\0';str++){
+    // for loop keeps iterating though a string until a non space character is found.
+    // Once a non space character is found, the word switch turns on
+    if(non_space_char(*str) == 1){
+      word_switch = 1;
+    }
+    // When there is a space between words, word count is increments and word switch turns off
+    if((word_switch == 1) && (space_char(*str) == 1)){
+      word_count++;
+      word_switch = 0;
+    }
+  }
 
+  // After the for loop, if word switch is still on, that means it ended on a non space character.
+  // This also means it didn't get the chance to increment the word count inside the for loop.
+  // This is where word count gets the chance to increment one final time.
+  if(word_switch == 1){
+    word_count++;
+  }
+
+  // Returns the total number of words counted in the function
+  return word_count;
 }
-
-*/
