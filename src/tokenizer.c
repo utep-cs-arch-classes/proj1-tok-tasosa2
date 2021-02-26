@@ -28,8 +28,8 @@ int main(){
   char word3[] = "HOLA";
   char word4[] = " HOLA";
   char word5[] = "HOLA ";
-  char word6[] = "HOLA AMIGO";
-  char word7[] = " HOLA AMIGO SOY THOMAS ";
+  char word6[] = "HOLA MUNDO"
+  char word7[] = " HOLA MUNDO SOY THOMAS ";
 
   printf("count_words Test 1: %i\n", count_words(word3));
   printf("count_words Test 2: %i\n", count_words(word4));
@@ -121,8 +121,47 @@ int count_words(char *str){
   // This is where word count gets the chance to increment one final time.
   if(word_switch == 1){
     word_count++;
-  }
+   }
 
   // Returns the total number of words counted in the function
   return word_count;
 }
+
+
+/* Returns a freshly allocated new zero-terminated string
+     containing <len> chars from <inStr> */
+char *copy_str(char *inStr, short len);{
+
+
+
+
+
+
+}
+
+
+/* Returns a freshly allocated zero-terminated vector of freshly allocated
+   space-separated tokens from zero-terminated str.
+   For example, tokenize("hello world string") would result in:
+     tokens[0] = "hello"
+     tokens[1] = "world"
+     tokens[2] = "string"
+     tokens[3] = 0
+  */
+char **tokenize(char* str){
+  }
+
+
+/* Prints all tokens. */
+void print_tokens(char **tokens){
+  }
+
+
+/* Frees all tokens and the vector containing them. */
+void free_tokens(char **tokens){
+  }
+
+
+
+
+
